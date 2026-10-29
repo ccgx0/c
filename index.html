@@ -1,84 +1,111 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CC game</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; color: #333; }
-        main { max-width: 800px; margin: 0 auto; padding: 8rem 2rem 4rem; text-align: center; }
-        h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #222; font-weight: 800; }
-        .tagline { font-size: 1.2rem; color: #666; margin-bottom: 3rem; }
-        section { margin-bottom: 2rem; text-align: left; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        section h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #4A90D9; border-left: 4px solid #4A90D9; padding-left: 0.8rem; }
-        section p { color: #555; line-height: 1.8; }
-        .img-row { display: flex; gap: 1rem; margin: 1.2rem 0; flex-wrap: wrap; }
-        .img-row img { flex: 1 1 calc(50% - 0.5rem); width: calc(50% - 0.5rem); min-width: 140px; border-radius: 8px; object-fit: cover; aspect-ratio: 16 / 9; border: 1px solid #eee; background: #fafafa; }
-        .btn-wrap { text-align: center; margin-top: 1.5rem; }
-        .download-btn { padding: 0.7rem 1.4rem; background-color: #4A90D9; color: #fff; border: none; border-radius: 8px; font-size: 0.95rem; cursor: pointer; transition: background 0.3s ease, transform 0.2s ease; }
-        .download-btn:hover { background-color: #5B8DEF; transform: translateY(-2px); }
-        footer { text-align: center; padding: 2rem; color: #999; font-size: 0.9rem; border-top: 1px solid #e9ecef; margin-top: 2rem; }
-        @media (max-width: 768px) {
-            main { padding-top: 6rem; }
-            h1 { font-size: 2rem; }
-            .tagline { font-size: 1.1rem; }
-            .img-row { flex-direction: column; }
-            .img-row img { width: 100%; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC game</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:#e3f0fb; color:#333; }
+  main { max-width:1000px; margin:0 auto; padding:8rem 2rem 4rem; text-align:center; }
+  h1 { font-size:2.5rem; margin-bottom:1rem; color:#222; font-weight:800; }
+  .tagline { font-size:1.2rem; color:#5a6b7b; margin-bottom:3rem; }
+
+  section {
+    margin-bottom:2rem; text-align:left;
+    background:#eefaf0; border:1px solid #c6e8cf;
+    padding:2.5rem; border-radius:14px;
+    box-shadow:0 4px 16px rgba(59,179,107,.10);
+  }
+  section h2 {
+    font-size:1.5rem; margin-bottom:1rem; color:#3bb36b;
+    border-left:4px solid #3bb36b; padding-left:.8rem;
+  }
+  section p { color:#4a5a50; line-height:1.8; }
+
+  .img-row, .img-extra { display:flex; gap:1rem; flex-wrap:wrap; }
+  .img-row { margin:1.2rem 0; }
+  .img-extra { margin-top:1.2rem; }
+  .img-row img, .img-extra img {
+    flex:1 1 calc(50% - .5rem); width:calc(50% - .5rem); min-width:140px;
+    border-radius:8px; object-fit:cover; aspect-ratio:16/9;
+    border:1px solid #d8eadd; background:#fff;
+  }
+
+  .btn-wrap { text-align:center; margin-top:1.5rem; }
+  .download-btn {
+    padding:.7rem 1.4rem; background:#3bb36b; color:#fff; border:none;
+    border-radius:8px; font-size:.95rem; cursor:pointer;
+    transition:background .3s ease,transform .2s ease;
+  }
+  .download-btn:hover { background:#2f9a5b; transform:translateY(-2px); }
+
+  footer { text-align:center; padding:2rem; color:#7a8a99; font-size:.9rem; border-top:1px solid #cfe0ef; margin-top:2rem; }
+
+  @media (max-width:768px){
+    main { padding-top:6rem; max-width:100%; }
+    h1 { font-size:2rem; } .tagline { font-size:1.1rem; }
+    .img-row,.img-extra { flex-direction:column; }
+    .img-row img,.img-extra img { width:100%; }
+  }
+</style>
 </head>
 <body>
+
 <main id="home">
-    <h1>CC game</h1>
-    <p class="tagline">猫c谷的游戏频道</p>
-    <section id="about">
-        <h2>---猫灵星物语---</h2>
-        <p>一款简单的3D沙盒游戏，作者：猫c谷，有些bug，请大家多多原谅！键位：wasd移动，</p>
-        <div class="img-row">
-            <a href="https://ibb.co/3y33PjSW"><img src="https://i.ibb.co/JR11SGr2/2026-10-06-101719.png" alt="图 2026 10 06 101719" border="0"></a>
-            <a href="https://ibb.co/fzZqsfhS"><img src="https://i.ibb.co/zTCQzpy5/2026-10-06-104025.png" alt="图 2026 10 06 104025" border="0"></a>
-        </div>
-        <div class="btn-wrap">
-            <button class="download-btn" id="downloadBtn1">
-                <i class="fas fa-download"></i> 下载猫灵星物语nc.0.0.8
-            </button>
-        </div>
-    </section>
+  <h1>CC game</h1>
+  <p class="tagline">猫c谷的游戏频道</p>
 
-    <section id="about-copy">
-        <h2>---两角洲行动---</h2>
-        <p>一款简单的3D枪战游戏，作者：猫c谷，有些bug，请大家多多原谅！键位：wasd移动，</p>
-        <div class="img-row">
-            <img src=" " alt="两角洲行动截图1">
-            <img src="h" alt="两角洲行动截图2">
-        </div>
-        <div class="btn-wrap">
-            <button class="download-btn" id="downloadBtn2">
-                <i class="fas fa-download"></i> 下载两角洲行动
-            </button>
-        </div>
-    </section>
+  <section id="about">
+    <h2>---猫灵星物语---</h2>
+    <p>一款简单的3D沙盒游戏，作者：猫c谷（11岁），有些bug，请大家多多原谅！键位：wasd移动，R打开背包，0~9切换物品栏，空格跳~</p>
+    <div class="img-row">
+      <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图1" alt="截图1">
+      <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图2" alt="截图2">
+      <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图3" alt="截图3">
+      <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图4" alt="截图4">
+    </div>
+    <div class="btn-wrap">
+      <button class="download-btn"><i class="fas fa-download"></i> 下载猫灵星物语nc.0.0.9</button>
+    </div>
+    <div class="img-extra">
+      <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图5" alt="截图5">
+      <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图6" alt="截图6">
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2026 catcgu. All rights reserved.</p>
-    </footer>
+  <section id="about-copy">
+    <h2>---两角洲行动---</h2>
+    <p>一款简单的3D枪战游戏，作者：猫c谷（11岁），有些bug，请大家多多原谅！键位：wasd移动，shift切枪~</p>
+    <div class="img-row">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图1" alt="截图1">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图2" alt="截图2">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图3" alt="截图3">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图4" alt="截图4">
+    </div>
+    <div class="btn-wrap">
+      <button class="download-btn"><i class="fas fa-download"></i> 下载两角洲行动</button>
+    </div>
+    <div class="img-extra">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图5" alt="截图5">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图6" alt="截图6">
+    </div>
+  </section>
+
+  <footer><p>&copy; 2026 catcgu. All rights reserved.</p></footer>
 </main>
+
 <script>
-document.querySelectorAll('.download-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-        const content = `cat`;
-        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'cat.txt';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    });
+document.querySelectorAll('.download-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var blob=new Blob(['cat'],{type:'text/plain;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url; a.download='cat.txt';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  });
 });
 </script>
 </body>
