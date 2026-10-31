@@ -6,46 +6,105 @@
 <title>CC game</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+  :root{
+    --green:#3bb36b; --green-dark:#2f9a5b; --green-light:#eefaf0;
+    --blue-bg:#e3f0fb; --text:#333; --muted:#6b7d8c;
+  }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:#e3f0fb; color:#333; }
-  main { max-width:1000px; margin:0 auto; padding:8rem 2rem 4rem; text-align:center; }
-  h1 { font-size:2.5rem; margin-bottom:1rem; color:#222; font-weight:800; }
-  .tagline { font-size:1.2rem; color:#5a6b7b; margin-bottom:3rem; }
-
-  section {
-    margin-bottom:2rem; text-align:left;
-    background:#eefaf0; border:1px solid #c6e8cf;
-    padding:2.5rem; border-radius:14px;
-    box-shadow:0 4px 16px rgba(59,179,107,.10);
+  html{ scroll-behavior:smooth; }
+  body {
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(160deg,#e3f0fb 0%,#d9eaf7 100%);
+    color:var(--text); line-height:1.7;
   }
-  section h2 {
-    font-size:1.5rem; margin-bottom:1rem; color:#3bb36b;
-    border-left:4px solid #3bb36b; padding-left:.8rem;
-  }
-  section p { color:#4a5a50; line-height:1.8; }
+  main { max-width:1000px; margin:0 auto; padding:5rem 1.5rem 4rem; text-align:center; }
 
+  /* ===== 标题区 ===== */
+  h1 {
+    font-size:3rem; font-weight:900; letter-spacing:1px;
+    background:linear-gradient(90deg,#2f9a5b,#4bb5d4,#3bb36b);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 3px 6px rgba(47,154,91,.25));
+    margin-bottom:.6rem;
+  }
+  .tagline {
+    display:inline-block;
+    font-size:1.1rem; color:#4a6b7d;
+    background:#fff; border:1px solid #cfe4f0;
+    padding:.45rem 1.4rem; border-radius:999px;
+    box-shadow:0 2px 8px rgba(75,181,212,.12);
+    margin-bottom:2.6rem;
+  }
+
+  /* ===== 通用绿框 ===== */
+  .card {
+    margin-bottom:2.2rem; text-align:left;
+    background:var(--green-light);
+    border:1px solid #c6e8cf; border-radius:18px;
+    padding:2.4rem 2.6rem;
+    box-shadow:0 6px 24px rgba(59,179,107,.10);
+    position:relative; overflow:hidden;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 90% 10%, rgba(255,255,255,.7), transparent 55%);
+    pointer-events:none;
+  }
+  .card:hover{ transform:translateY(-3px); box-shadow:0 12px 34px rgba(59,179,107,.18); }
+  .card h2 {
+    font-size:1.55rem; margin-bottom:1rem; color:var(--green-dark);
+    border-left:5px solid var(--green); padding-left:.8rem;
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .card p { color:#476052; line-height:1.85; font-size:1.02rem; }
+
+  /* ===== 图片 ===== */
   .img-row, .img-extra { display:flex; gap:1rem; flex-wrap:wrap; }
-  .img-row { margin:1.2rem 0; }
-  .img-extra { margin-top:1.2rem; }
+  .img-row { margin:1.4rem 0; }
+  .img-extra { margin-top:1.4rem; }
   .img-row img, .img-extra img {
     flex:1 1 calc(50% - .5rem); width:calc(50% - .5rem); min-width:140px;
-    border-radius:8px; object-fit:cover; aspect-ratio:16/9;
+    border-radius:12px; object-fit:cover; aspect-ratio:16/9;
     border:1px solid #d8eadd; background:#fff;
+    transition:transform .3s ease, box-shadow .3s ease;
+    cursor:pointer;
+  }
+  .img-row img:hover, .img-extra img:hover {
+    transform:translateY(-4px) scale(1.015);
+    box-shadow:0 10px 26px rgba(47,154,91,.22);
   }
 
-  .btn-wrap { text-align:center; margin-top:1.5rem; }
+  /* ===== 按钮 ===== */
+  .btn-wrap { text-align:center; margin-top:1.6rem; }
+  .btn-tip { margin-top:.9rem; text-align:center; font-size:.9rem; color:var(--muted); }
   .download-btn {
-    padding:.7rem 1.4rem; background:#3bb36b; color:#fff; border:none;
-    border-radius:8px; font-size:.95rem; cursor:pointer;
-    transition:background .3s ease,transform .2s ease;
+    padding:.8rem 1.8rem; background:linear-gradient(135deg,#3bb36b,#2f9a5b);
+    color:#fff; border:none; border-radius:999px; font-size:1rem; font-weight:600;
+    cursor:pointer; box-shadow:0 4px 14px rgba(47,154,91,.35);
+    transition:transform .2s ease, box-shadow .2s ease;
   }
-  .download-btn:hover { background:#2f9a5b; transform:translateY(-2px); }
+  .download-btn:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(47,154,91,.45); }
+  .download-btn:active{ transform:scale(.96); }
 
-  footer { text-align:center; padding:2rem; color:#7a8a99; font-size:.9rem; border-top:1px solid #cfe0ef; margin-top:2rem; }
+  /* ===== 特别鸣谢 ===== */
+  .thanks ol { margin-left:1.4rem; color:#3f5a4a; line-height:2.1; font-size:1rem; }
+  .thanks ol li { margin-bottom:.25rem; }
+
+  footer {
+    text-align:center; padding:2rem; color:#7a8a99; font-size:.9rem;
+    border-top:1px dashed #cfe0ef; margin-top:2rem;
+  }
+  footer i { color:#ffb347; }
+
+  /* ===== 入场动画 ===== */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.show{ opacity:1; transform:none; }
 
   @media (max-width:768px){
-    main { padding-top:6rem; max-width:100%; }
-    h1 { font-size:2rem; } .tagline { font-size:1.1rem; }
+    main { padding-top:4rem; }
+    h1 { font-size:2.1rem; }
+    .card { padding:1.8rem 1.4rem; }
     .img-row,.img-extra { flex-direction:column; }
     .img-row img,.img-extra img { width:100%; }
   }
@@ -54,11 +113,24 @@
 <body>
 
 <main id="home">
-  <h1>CC game</h1>
-  <p class="tagline">猫c谷的游戏频道</p>
 
-  <section id="about">
-    <h2>---猫灵星物语---</h2>
+  <!-- 🐾 顶部欢迎绿框 -->
+  <div class="card reveal" style="background:linear-gradient(135deg,#eefaf0,#dcf3e6);">
+    <h2><i class="fas fa-cat" style="color:#ffb347;"></i>欢迎来到 CC game！</h2>
+    <p>
+      这里是 <b>猫c谷</b>（11 岁 · 野生独立游戏制作人 🎮）的游戏小站～<br>
+      目前有两款自己用 3D 引擎捏出来的游戏：<b>《猫灵星物语》</b> 和 <b>《两角洲行动》</b>。
+      游戏还嫩，难免有 bug，能玩到就是赚到，也欢迎帮我抓虫！🐛✨<br>
+      <span style="font-size:.92rem;color:#6b7d6c;">👇 往下滑，挑一个开玩吧</span>
+    </p>
+  </div>
+
+  <h1>CC game</h1>
+  <p class="tagline"><i class="fas fa-paw"></i> 猫c谷的游戏频道</p>
+
+  <!-- 猫灵星物语 -->
+  <section class="card reveal" id="about">
+    <h2><i class="fas fa-cube"></i>---猫灵星物语---</h2>
     <p>一款简单的3D沙盒游戏，作者：猫c谷（11岁），有些bug，请大家多多原谅！键位：wasd移动，R打开背包，0~9切换物品栏，空格跳~</p>
     <div class="img-row">
       <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图1" alt="截图1">
@@ -69,34 +141,49 @@
     <div class="btn-wrap">
       <button class="download-btn"><i class="fas fa-download"></i> 下载猫灵星物语nc.0.0.9</button>
     </div>
+    <div class="btn-tip">下载即可运行 · Windows 版 · 大小约 1.05GB，操作步骤如下：</div>
     <div class="img-extra">
       <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图5" alt="截图5">
       <img src="https://via.placeholder.com/400x225?text=猫灵星物语+截图6" alt="截图6">
     </div>
   </section>
 
-  <section id="about-copy">
-    <h2>---两角洲行动---</h2>
+  <!-- 两角洲行动（按钮上方新增 2 张图） -->
+  <section class="card reveal" id="about-copy">
+    <h2><i class="fas fa-crosshairs"></i>---两角洲行动---</h2>
     <p>一款简单的3D枪战游戏，作者：猫c谷（11岁），有些bug，请大家多多原谅！键位：wasd移动，shift切枪~</p>
+    <!-- ✅ 新增：按钮上方 2 张图 -->
     <div class="img-row">
-      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图1" alt="截图1">
-      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图2" alt="截图2">
-      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图3" alt="截图3">
-      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图4" alt="截图4">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图1" alt="两角洲行动截图1">
+      <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图2" alt="两角洲行动截图2">
     </div>
     <div class="btn-wrap">
       <button class="download-btn"><i class="fas fa-download"></i> 下载两角洲行动</button>
     </div>
+    <div class="btn-tip">下载后即可运行 · Windows 版 · 大小约 988MB，操作步骤如下：</div>
     <div class="img-extra">
       <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图5" alt="截图5">
       <img src="https://via.placeholder.com/400x225?text=两角洲行动+截图6" alt="截图6">
     </div>
   </section>
 
-  <footer><p>&copy; 2026 catcgu. All rights reserved.</p></footer>
+  <!-- 特别鸣谢 -->
+  <div class="card thanks reveal">
+    <h2><i class="fas fa-heart" style="color:#ff7a7a;"></i>🐾 特别鸣谢</h2>
+    <ol>
+      <li>猫c谷！绝对权威的编程部门！！！</li>
+      <li>COW！他告诉我引擎这回事儿</li>
+      <li>B站up主：星露！是他教我UE的！</li>
+      <li>王三鸡&amp;俞豪哥，为我们的游戏找bug,提建议！！</li>
+      <li>最后！屏幕前的你！！！你们的支持就是我继续做下去的动力！</li>
+    </ol>
+  </div>
+
+  <footer><p><i class="fas fa-cat"></i> &copy; 2026 catcgu. All rights reserved.</p></footer>
 </main>
 
 <script>
+// 下载按钮（保持原逻辑）
 document.querySelectorAll('.download-btn').forEach(function(btn){
   btn.addEventListener('click',function(){
     var blob=new Blob(['cat'],{type:'text/plain;charset=utf-8'});
@@ -107,6 +194,16 @@ document.querySelectorAll('.download-btn').forEach(function(btn){
     document.body.removeChild(a); URL.revokeObjectURL(url);
   });
 });
+
+// 滚动淡入动画
+var items=document.querySelectorAll('.reveal');
+function check(){
+  var h=window.innerHeight;
+  items.forEach(function(el){
+    if(el.getBoundingClientRect().top < h*0.88) el.classList.add('show');
+  });
+}
+check(); window.addEventListener('scroll',check);
 </script>
 </body>
 </html>
